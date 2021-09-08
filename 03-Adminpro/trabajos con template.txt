@@ -1,0 +1,88 @@
+curso para tener dos templates separados y funcionales...
+*Uso del template administrativo
+*Código fuente del template
+*Uso de librerías externas
+*Creación de los primeros componentes
+*Separar el Login del template administrativo, ya que tienen estructuras diferentes
+*Animaciones por CSS
+*Respaldos en GitHub
+*Preparar el proyecto que usaremos a lo largo del curso
+
+la estructuras simple:
+app/
+->componentes
+->Servicios/providers
+->Guards/Protectores
+
+
+//se puede redireccionar y tener agregado:
+404
+login
+pages
+shared ->todos los componentes q son utilizados
+/->sidebar natbar header
+signup
+
+/* dentro de pages se encuentra:
+-component
+-form
+-icons
+-starter
+-table
+
+/* dentro de src/app/pages/component:
+se encuentran componentes reutilizables que no estan dentro del share
+
+/* dentro de src/app/pages/table:
+se encuentra tareas en especificas q realiza el aplicativo
+
+/* dentro de src/app/pages/:
+->pages-routing.module.ts
+en este modulo se encunetra subrutas y routers
+->pages.module.ts
+modulo propio de pages que agrupa todas las paginas
+
+-->manejo de modulos explicando con auth/login
+para autenticacion
+
+ng g c auth/login --skipTests -is
+ng g c auth/register --skipTests -is --> componentes para la carpeta auth
+
+ng g c pages/nopagefound --skipTests -is
+ng g c pages/dashboard --skipTests -is -->pagina q ve cuando ingresa
+/* se puede añadir header sidebar y footer
+
+/* crear archivos reutilizables
+ng g c shared/breadcrumbs --skipTests -is
+ng g c shared/sidebar --skipTests -is
+ng g c shared/header --skipTests -is
+
+/* copias los scripts y links de pages-blacked
+colocarlos en el arch index.html y quitar un punto a ../assets y dar el nivel de ./assets
+
+/* copiar la clase y colocarla en el body: class="fix-header card-no-border fix-sidebar"
+/* copiar tambien el preloader
+/* copiar y conocar en app.component.html: <div id="main-wrapper">
+    </div>
+tamien copiar todo el header y colocarlo en su componente respectivo: shared/header.html
+//shift+tab -->es para tabular
+se lo llama dentro del app component despues del div.main-wrapper:
+<app-header></app-header>
+/* copiar tambien la carpeta scss por los iconos q contiene
+/* en languaje cambiar:
+<div class="dropdown-menu dropdown-menu-right animated bounceInDown">
+por:
+<div class="dropdown-menu dropdown-menu-right animated fadeIn">
+
+/* copiar el sidebar de page-blanck
+agregarlo en el componente de Shared/sidebar.html
+llamarlo en app.componen despues de header
+//dentro del sidebar solo dejar hasta dashboard el resto de <li> eliminar
+
+/*copiar del page-blanck:
+<div class="page-wrapper">
+<div class="container-fluid">
+esto va despues de app-sidebar que es parte del template
+//dentro va la seccion de mi sistema de rutas
+//copiar div.class=row que hace referencia al contenido de visualizacion
+//el futer va despues del </div container fluid>

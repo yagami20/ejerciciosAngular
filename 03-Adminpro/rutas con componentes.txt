@@ -1,0 +1,52 @@
+/* crear un archivo para las rutas principales
+esto se agrega dentro de la carpeta app:
+//usualmente el archivo se llama route
+app-routing.module.ts
+//por comandos del angular cli:
+ng g m appRouting --flat
+//se puede eliminar el siguiente modulo:
+import { CommonModule } from '@angular/common';
+ya que no se lo utiliza momentaneamente
+//sintaxis de un modulo normal:
+import { NgModule } from '@angular/core';
+@NgModule({
+  declarations: [],
+  imports: []
+})
+export class AppRoutingModule { }
+//
+/* se crea 2 new component
+ng g c pages/progress -is --skipTests
+ng g c pages/grafica1 -is --skipTests
+
+/? para importar paginas
+import {routerModule} form'@angular/router';
+
+const routes: Routes=[
+{path: 'dashboard', component: dashboardComponent},
+{path: 'dashboard', component: dashboardComponent},
+{path: '', redirecTo: '/dasboard', pathMatch:'full'},
+{path: '**', component: NopagefoundComponent},
+];
+
+/? para cuando mandan una direccion vacia
+{path: '', redirecTo: '/dasboard', pathMatch:'full'},
+/? que no este definido
+{path: '**', component: NopagefoundComponent},
+
+/* para rutas principales se importa forRoot
+imports: [
+    RouterModule.forRoot(routes)],
+
+/? se puede eliminar de app.module
+providers: [],
+
+en imports se agrega el archivo de las rutas: AppRoutingModule y se lo importa:
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+  ],
+
+/* en el archivo app.component.html va asignada las rutas:
+en la seccion del card-body se agrega:
+<router-outlet></router-outlet> --> que es la etiqueta del componente de rutas
