@@ -1,0 +1,28 @@
+separa el template principal del template login
+separando rutas
+/* crear componente:
+ng g c pages/pages --flat --skipTests -is
+este componente se mostrara cuando estemos logueados
+
+//se realiza una copia de app.component.html a pages.component.html
+
+en el componente app.component se reescribe todo y se deja la etiqueta:
+<router-outlet></router-outlet>
+la etiqueta <routes-outlet> no cambiara siendo asi rutas
+
+dentro del modulo app-routing.module hay q realizar el siguiente cambio:
+separar las rutas publicas de las privadas
+se crea una nueva ruta
+{path:'', component: PagesComponent},
+
+para definir las rutas hijas se hace la siguiente estructura:
+{
+    path:'',  
+    component: PagesComponent,
+    children: [
+      {path:'dashboard', component: DashboardComponent},
+      {path:'progress', component: ProgressComponent},
+      {path:'grafica1', component: Grafica1Component},
+      {path:'', redirectTo: '/dashboard', pathMatch: 'full'},      
+    ]
+  },
