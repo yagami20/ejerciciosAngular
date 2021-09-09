@@ -1,0 +1,14 @@
+copiamos de pages-error.html y errorpage.css
+colocamos en nopagefound.component en sus respectivos archivos
+asignamos
+para colocar el año actual ingresamos la siguiente info:
+export class NopagefoundComponent  {
+
+  year = new Date().getFullYear();
+
+}
+
+se modifica en Nopagefound.component.ts
+y en nopagefound.component.html se agrega:
+
+ <footer class="footer text-center">© {{year}} Admin Pro.</footer>
