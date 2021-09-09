@@ -1,0 +1,30 @@
+## git hub respaldos comandos
+git --version
+
+##preparar fotografia
+git init
+
+git add . --> commit comando
+
+## commit
+git commit -n "fin seccion 3 - diseño"
+
+## comando de respaldo para regresar a lo anterior
+git checkout --
+
+## comando para subir al repositorio creado
+copiar los comandos que salen en el repositorio recie creado
+en la seccion de:
+..or push an existing repository from the command line
+
+## crear release del codigo en produccion
+git tag -a v1.0.0 -m "diseño listo" --> coloca un tag y un mensaje "-m"
+git tag --> para confirmar
+
+##desplegar git tags
+git push --tag
+
+
+##transformar de tag a release
+seleccionar y modificar con release
+con nombre y descripcion
