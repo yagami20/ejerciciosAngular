@@ -1,0 +1,11 @@
+del page.login2 copiar solo desde inicio wrapper hasta end wrapper
+colocarlo en el componente: app/auth/login/login.component.html
+del archivo login-register-lock.css copiar su contenido todo
+crear un archivo dentro de la carpeta login:
+login.component.css --> nombre del nuevo archivo
+
+pegar lo copiado en el nuevo archivo
+abrir el archivo login.component.ts
+
+en el espacio de styles:[] colocar:
+styleUrls: ['./login.component.css']
