@@ -1,0 +1,25 @@
+# backup y clone
+
+# backup
+descargar del release la version mas conveniente
+agregar los modules de node
+en comandos:
+ingresar a la carpeta ../desktop/Angular/03-adminpro
+ejecutar comando:
+
+npm install
+
+y luego:
+ng serve -o --> levantar servicios
+y se ve tal cual se dejo en la version descargada
+
+#clone
+descargar el mismo repositorio con los cambios y commits:
+git log --> para ver los commits
+
+descargar del boton verde clone via code:
+
+dentro de la carpeta de ../desktop/Angular :
+git clone https://github.com/yagami20/03-adminpro.git
+
+
