@@ -1,0 +1,213 @@
+comunicacion entre componentes
+Recibe es @input
+emite @output
+
+ir a pages component para realizar mdificaciones
+cortar router outlet y colocarlo debajo de el comentario mi sistema de rutas:
+
+<div class="container-fluid">
+                <!-- Breadcrumbs -->
+                <app-breadcrumbs></app-breadcrumbs> 
+                <!-- mi sistema de rutas -->
+                <router-outlet></router-outlet>
+
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- This is some text within a card block. -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+
+se copia y se comenta y finalmennte se guarda los cambios
+
+<!--
+<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- This is some text within a card block. -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+-->
+
+se puede dividir el bloque de 12 en dos de 6 de la siguiente manera dentro del
+progress.component.html:
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block. -->
+                <p>progress works!</p>
+            </div>
+        </div>
+    </div>
+    <!-- inicio second block -->
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block. -->
+                <p>progress works!</p>
+            </div>
+        </div>
+    </div>
+    <!-- fin second block -->
+</div>
+
+para agregar el progressbar se coloca el siguiente codigo:
+<div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block. -->
+                <p>progress works!</p>
+                <h4 class="card-title">Striped Progress bar</h4>
+                <div class="progress-bar bg-primary progress-bar-striped active" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%; height:10px;" role="progressbar"> <span class="sr-only">85% Complete (success)</span> </div>
+            </div>
+        </div>
+    </div>
+
+para que funcione copiamos y creamos progress.component.css:
+/*
+Template Name: Admin pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*******************
+Progress bar
+******************/
+.progress.active .progress-bar,
+.progress-bar.active {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  -o-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite; }
+
+.progress-vertical {
+  min-height: 250px;
+  height: 250px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 20px; }
+
+.progress-vertical-bottom {
+  min-height: 250px;
+  height: 250px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 20px;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+.progress-animated {
+  -webkit-animation-duration: 5s;
+  -webkit-animation-name: myanimation;
+  -webkit-transition: 5s all;
+  animation-duration: 5s;
+  animation-name: myanimation;
+  -o-transition: 5s all;
+  transition: 5s all; }
+
+@-webkit-keyframes myanimation {
+  from {
+    width: 0; } }
+
+@keyframes myanimation {
+  from {
+    width: 0; } }
+
+y llamamos a este componente en progress.componen.ts:
+
+ styleUrls: [
+  './progress.component.css'
+  ]
+y finalmente queda asi con todos los cambios:
+<div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block. -->
+                <p>progress works!</p>
+                <h4 class="card-title">Striped Progress bar</h4>
+                <div class="progress-bar bg-primary progress-bar-striped active"  style="width: 85%; height:10px;" role="progressbar"> <span class="sr-only">85% Complete (success)</span> </div>
+            </div>
+        </div>
+    </div>
+
+para realizar los cambios solo se modifica:
+
+style="width: 85%; height:10px;"
+
+por:
+
+style="width: 50%; height:10px;"
+
+para un nuevo espacio se coloca .row y tab
+se genera:
+div.row
+
+tambien se genera .col
+ que es :div.col
+
+tambien se genera div.card
+
+tambien se genera div.card-body:
+
+dsd div.col hasta div.card-body se repite la secuencia quedando de la sig:
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                1
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                2
+            </div>
+        </div>
+    </div>
+</div>
+
+dentro del cardbody 1 se colocara lo siguiente:
+<div class="input-group">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    </span>
+                            <input type="text" class="form-control" placeholder="Product name">
+                            <span class="input-group-btn">
+                    <button class="btn btn-success" type="button">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    </span>
+                </div>
