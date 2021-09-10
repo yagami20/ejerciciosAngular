@@ -1,0 +1,52 @@
+## colocar rupas por medio de un path:
+se quiere que se visualice una ruta asi:
+https:/dashboard/progress
+
+en pages/page.routing se va a hacer las siguientes mod:
+const routes: Routes = [
+    {
+        path:'',  
+        component: PagesComponent,
+        children: [ 
+          {path:'dashboard', component: DashboardComponent},
+          {path:'progress', component: ProgressComponent},
+          {path:'grafica1', component: Grafica1Component},
+          {path:'', redirectTo: '/dashboard', pathMatch: 'full'},      
+        ]
+      },
+];
+
+y quedara asi:
+const routes: Routes = [
+    {
+        path:'dashboard',  
+        component: PagesComponent,
+        children: [ 
+          {path:'', component: DashboardComponent},
+          {path:'progress', component: ProgressComponent},
+          {path:'grafica1', component: Grafica1Component},     
+        ]
+      },
+];
+
+en el authRouting.module hay q hacer la sig modificacion:
+const routes: Routes= [
+  
+  //path: '/dashboard' PagesRouting
+  //path: '/auth' authRouting
+
+  {path:'**', component: NopagefoundComponent},
+  
+];
+
+y quedara asi:
+
+const routes: Routes= [
+  
+  //path: '/dashboard' PagesRouting
+  //path: '/auth' authRouting
+
+  {path:'', redirectTo: '/dashboard', pathMatch: 'full'},  
+  {path:'**', component: NopagefoundComponent},  
+  
+];
