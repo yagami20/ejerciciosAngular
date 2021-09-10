@@ -1,0 +1,42 @@
+## forchild
+crear un nuevo modulo y crear rutas hijas:
+el nuevo modulo se creara desde el visual code con elnombre de:
+
+pages.routing.ts
+en el archivo escribir:
+
+ng-router y presionar tab
+
+## luego definir rutas hijas:
+cortar de app-routing:
+{
+    path:'',  
+    component: PagesComponent,
+    children: [ 
+      {path:'dashboard', component: DashboardComponent},
+      {path:'progress', component: ProgressComponent},
+      {path:'grafica1', component: Grafica1Component},
+      {path:'', redirectTo: '/dashboard', pathMatch: 'full'},      
+    ]
+  },
+
+y pegar en:pagesRouting
+dentro de const route:
+
+{
+    path:'',  
+    component: PagesComponent,
+    children: [ 
+      {path:'dashboard', component: DashboardComponent},
+      {path:'progress', component: ProgressComponent},
+      {path:'grafica1', component: Grafica1Component},
+      {path:'', redirectTo: '/dashboard', pathMatch: 'full'},      
+    ]
+  },
+
+y realizar las debidas importaciones
+importar forChild en nuestro sistemas de rutas principales app-routing
+imports: [
+    RouterModule.forRoot(routes),
+    PagesRoutingModule
+  ],
