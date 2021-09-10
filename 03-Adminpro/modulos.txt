@@ -1,0 +1,60 @@
+## primer modulo angular
+app-routing.module es exportado dentro de si mismo:
+exports: [RouterModule]
+
+e importado en app.module
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+  ],
+
+hay q simplificar y agrupar por secciones o paginas:
+creando modulos especiales para cada uno de ellos
+creado modulo para manejar todas las paginas q se encuentran en pages:
+
+ng g m pages/pages --flat
+ dentro de este modulo se coloca de la siguiente manera:
+
+@NgModule({
+  declarations: [
+    DashboardComponent,
+    ProgressComponent,
+    Grafica1Component,
+    PagesComponent,
+  ],
+  exports: [
+    DashboardComponent,
+    ProgressComponent,
+    Grafica1Component,
+    PagesComponent,
+  ],
+luego hay q importar este modulo en los import de app.module
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PagesModule
+  ],
+
+y realizar su respectivo llamado
+se va a crear otro modulo q corresponda a share:
+
+ng g m shared/shared --flat
+y se repite lo mismo
+para importar este modulo depende de donde se lo necesite:
+en este momento solo se usa en pages.module 
+es donde se realiza la importacion del modulo shared.module
+
+imports: [
+    CommonModule,
+    SharedModule
+  ]
+
+tambien se debe realizar su debida configuracion del modulo <route-outlet>
+ya q se encuentra encapsulado los modulos
+para habilitarlo hay q importar AppRoutingModule en pages.module
+
+imports: [
+    CommonModule,
+    SharedModule,
+    AppRoutingModule
+  ]
