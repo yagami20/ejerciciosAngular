@@ -1,0 +1,22 @@
+comandos:
+git add .
+
+git commit -m "fin seccion 4 -Router"
+
+git push
+
+git remote -v
+
+git tag
+
+git tag -a v1.5.0 -m "Rutas Listas"
+
+git psuh --tags
+
+editar release
+ttulo: fin seccion 4
+Des:
+# Rutas implementadas
+*AuthRouting
+*AppRouting
+*DashRouting
