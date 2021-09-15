@@ -1,0 +1,117 @@
+para controlar el progress bar se configura en
+progress.component.ts
+en export class progresscomponent:
+
+export class ProgressComponent  {
+
+  // constructor() { }
+
+  // ngOnInit(): void {
+  // }
+  progreso: number=50;
+
+}
+
+y en progress html:
+
+<div class="progress-bar bg-primary progress-bar-striped active"  
+                style="width: {{progreso}}%; height:5px;" 
+                role="progressbar"> 
+                <span class="sr-only">85% Complete (success)</span> 
+                </div>
+
+existe otra forma de representar el porcentaje q se envia:
+<div class="progress-bar bg-primary progress-bar-striped active"  
+                style="height:5px;" 
+                [style.width]="progreso + '%'"
+                role="progressbar"> 
+                </div>
+
+otra forma es:
+dentro del componente progress.component.ts
+en export class:
+
+get getPorcentaje(){
+    return '${this.progreso}%';
+  }
+y en el html:
+
+<div class="progress-bar bg-primary progress-bar-striped active"  
+                style="height:5px;" 
+                [style.width]="getPorcentaje"
+                role="progressbar"> 
+                <span class="sr-only">85% Complete (success)</span> 
+                </div>
+
+para realizr el incremento y decremento por medio de botones:
+
+creando una nueva funcion dentro de export class de progresbar:
+
+  cambiarValor(valor: number){
+    this.progreso= this.progreso + valor;
+  }
+
+comando para añadir expresion: ngclick
+para reducir es de la siguiente manera:
+
+<button class="btn btn-primary" 
+                            (click)="cambiarValor(-5)"
+                            type="button">
+                                <i class="fa fa-minus"></i>
+                            </button>
+
+para aumentar:
+<button class="btn btn-primary" 
+                            (click)="cambiarValor(+5)"
+                            type="button">
+                                <i class="fa fa-minus"></i>
+                            </button>
+
+validar incrementos:
+cambiarValor( valor: number){
+    if( this.progreso >=100 && valor >=0){
+      this.progreso=100;
+      return;
+    }
+
+    if( this.progreso <=0 && valor <0){
+      this.progreso=0;
+      return;
+    }
+
+    this.progreso = this.progreso+valor;
+  }
+
+colocar el porcentaje y q se pueda cambiar:
+anexar el ngModel con el sniper que es ngmodel+Tab:
+
+<input type="text" 
+                    class="form-control"
+                    placeholder="Progreso"
+                    [(ngModel)]="progreso"
+                    >
+dara un error y es q hay q importar librerias de angular:
+para hacer importacion de los formularios se lo realiza en pages.component.ts:
+import { FormsModule } from '@angular/forms';
+
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule,
+    FormsModule
+  ]
+para controlar el error de no sumado se camia la caracteristica de type:
+<input type="number" 
+                    class="form-control"
+                    placeholder="Progreso"
+                    [(ngModel)]="progreso"
+                    >
+vlidacion de 0 a 100:
+<input type="number" 
+                    class="form-control"
+                    placeholder="Progreso"
+                    min="0"
+                    max="100"
+                    [(ngModel)]="progreso"
+                    >
+
