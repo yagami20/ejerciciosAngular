@@ -1,0 +1,76 @@
+abrir componente padre: progressComponent
+
+progreso1: number=15;
+progreso2: number=35;
+
+   get getProgreso1(){
+    return `${ this.progreso1 }%`;
+  }
+
+  get getProgreso2(){
+    return `${ this.progreso2 }%`;
+  }
+
+son los atributos q estaran dentro de export class progresComponent
+y agregamos el valor en el html de progress
+
+<div class="progress-bar bg-primary progress-bar-striped active"  
+                style="height:5px;" 
+                [style.width]="getProgreso1"
+                role="progressbar"> 
+            </div>
+                <!--  -->
+                <div class="progress m-t-20">
+                    <div class="progress-bar bg-info progress-bar-striped active"
+                    style="height:5px;"
+                    [style.width]="getProgreso2"
+                    role="progressbar">
+        
+                    </div>
+                </div>
+                <!--  -->
+
+para q funcione se debe escuchar los cambios realizados al componente hijo.
+esto disparara un evento
+para q eso suceda se pone el decorador output+Tab:
+import { Component, Input, Output } from '@angular/core';
+
+para el disparo de evento importar EventEmiter de 'angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+su declaracion es:
+  @Output('valorS') valorSalida: EventEmitter<number>=new EventEmitter();
+y la funcion para cambiar valor quedaria asi:
+
+cambiarValor( valor: number){
+    if( this.progreso >=100 && valor >=0){
+      this.valorSalida.emit(100);
+      this.progreso=100;
+      return;
+    }
+
+    if( this.progreso <=0 && valor <0){
+      this.valorSalida.emit(0);
+      this.progreso=0;
+      return;
+    }
+
+    this.progreso = this.progreso+valor;
+    this.valorSalida.emit(this.progreso);
+  }
+
+para ver ese evento va en el componente de la sig manera:
+    <app-incrementador (valorSalida)="" [valor1]="15"></app-incrementador>
+            
+se define en progress.component
+cambioValorHijo(){
+    console.log('hey!!');
+  }
+finalmente en el html quedaria de la sig manera:
+<app-incrementador (valorS)="progreso1= $event " 
+                                    [valor1]="progreso1">
+                </app-incrementador>
+
+de esta forma tenemos un componente reutilizable
+
+

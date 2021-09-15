@@ -1,0 +1,21 @@
+para recibir un valor desde el padre:
+se coloca en la propiedad de la siguiente manera:
+
+  @Input() progreso: number=40;
+realizamos su respectiva importacion:
+import { Component, Input } from '@angular/core';
+
+borrar el getComponent
+
+desde el padre Pages/progres/progres.component.html
+    <app-incrementador [progreso]="15"></app-incrementador>
+
+si no se realiza el envio tomara el valor por defecto dentr de component.ts
+
+se puede tener tantos imputs como se necesite
+
+para renombrar el argumento se hace:
+  @Input('valor1') progreso: number=40;
+y se coloca en el html:
+    <app-incrementador [valor1]="15"></app-incrementador>
+

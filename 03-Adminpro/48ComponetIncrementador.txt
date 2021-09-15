@@ -1,0 +1,135 @@
+colocar un nuevo progressBar:
+<div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block. -->
+                <p>progress works!</p>
+                <h4 class="card-title">Striped Progress bar</h4>
+                <div class="progress-bar bg-primary progress-bar-striped active"  
+                style="height:5px;" 
+                [style.width]="getPorcentaje"
+                role="progressbar"> 
+                </div>
+                <!--  -->
+                <div class="progress m-t-20">
+                    <div class="progress-bar bg-info progress-bar-striped active"
+                    style="height:5px;"
+                    [style.width]="getPorcentaje"
+                    role="progressbar">
+        
+                    </div>
+                </div>
+                <!--  -->
+            </div>
+        </div>
+
+# para reutilizr el mismo componente de una manera mas eficiente:
+se debe crear una nueva carpeta con el nombre "components"
+en la direccion src/app/ que al final quede src/app/components
+dentro de este contendra pequeños pedazos de codigo
+
+qitar el componente de app.modules.ts:
+import { IncrementadorComponent } from './components/incrementador/incrementador.component';
+y su declaracion:
+
+declarations: [
+    AppComponent,    
+    NopagefoundComponent, IncrementadorComponent,    
+    
+  ],
+
+quedara asi:
+declarations: [
+    AppComponent,    
+    NopagefoundComponent, 
+    
+  ],
+
+y eliminamos la carpeta components y su contenido
+
+crearemos como modulo de la sig manera:
+ng g m components/components --flat
+ejecutamos el comando:
+ng g c components/incrementador --skipTests -is
+
+crea el nuevo componente y actualiza "components.module.ts"
+dentro de components.module exportamos:
+exports:[incrementadorComponent],
+
+importamos ComponentsModule dentro de pages.module
+imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    RouterModule,
+    ComponentsModule
+  ]
+
+# ahora procederemos a crear el modulo:
+copiamos el input groups
+
+<div class="input-group">
+                            <span class="input-group-btn">
+                            <button class="btn btn-primary" 
+                            (click)="cambiarValor(-5)"
+                            type="button">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            </span>
+                            <input type="number" 
+                            class="form-control"
+                            placeholder="Progreso"
+                            min="0"
+                            max="100"
+                            [(ngModel)]="progreso"
+                            >
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary"
+                                (click)="cambiarValor(5)"
+                                 type="button">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                </div>
+
+y pegamos en increments.component.html
+y en progress.component.html va:
+
+<div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                
+                <app-incrementador></app-incrementador>
+            </div>
+        </div>
+    </div>
+
+hay q implementar los metodos:
+
+cortamos toda la logica:
+progreso: number=40;
+
+  get getPorcentaje(){
+    return `${ this.progreso }%`;
+  }
+
+  cambiarValor( valor: number){
+    if( this.progreso >=100 && valor >=0){
+      this.progreso=100;
+      return;
+    }
+
+    if( this.progreso <=0 && valor <0){
+      this.progreso=0;
+      return;
+    }
+
+    this.progreso = this.progreso+valor;
+  }
+
+y la pegamos en:
+increments.component.ts
+
+para solucionar el error de ngModule lo debemos importar en components.module
+
+y podemos agregar en progress.component.html un nuevo incrementador diferente
+<app-increment>
