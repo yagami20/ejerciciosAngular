@@ -1,0 +1,60 @@
+dentro de incrementadorComponent crear un nuevo input
+
+  @Input() btnClass: string = 'btn btn-primary';
+
+sera la clase por defecto y en el incrementadorHtml:
+quitamos la clase y agregamos la nuestra
+quitamos:
+
+<button <!--class="btn btn-primary"--> 
+    (click)="cambiarValor(-5)"
+    type="button">
+        <i class="fa fa-minus"></i>
+    </button>
+
+y agregamos: [ngClass]=" "
+de la sig manera:
+
+<button  
+    (click)="cambiarValor(-5)"
+    [ngClass]="btnClass"
+    type="button">
+        <i class="fa fa-minus"></i>
+    </button>
+
+se lo debe realizar en las dos formulaciones del codigo
+
+para parametrizar de padre a hijo se lo realiza en progressComponent
+
+<app-incrementador (valorS)="progreso2= $event " 
+                                    [valor1]="progreso2"
+                                    [btnClass]="'btn btn-info'">
+                </app-incrementador>
+
+para solo enviar una sola clase:
+implementamos el oninit:
+
+export class IncrementadorComponent implements OnInit  {
+
+para corregir el error presionamos ctrl+. donde nos indica implementar onint
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+se quita por defecto el error:
+  ngOnInit(): void {
+  }
+tambien se puede quitar el void:-->
+  ngOnInit(){
+  }
+
+de la siguiente manera ya solo enviamos una sola clase por el component:
+
+ngOnInit() {
+    this.btnClass = `btn ${ this.btnClass }`;
+  }
+
+de esta forma tambien se quita del imput
+
+  @Input() btnClass: string = 'btn-primary';
