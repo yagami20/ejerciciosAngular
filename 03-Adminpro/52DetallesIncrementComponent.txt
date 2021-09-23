@@ -1,4 +1,4 @@
-# detalles incrementador component
+# detalles incrementador component y validacion a caja de texto y aplicacion de validacion con boostrap
 
 como esta asocioado a ngModel esto tiene acceso a otro metodo "(ngModelChange)="
 de la siguiente forma:
