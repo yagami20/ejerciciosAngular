@@ -1,0 +1,64 @@
+# detalles incrementador component
+
+como esta asocioado a ngModel esto tiene acceso a otro metodo "(ngModelChange)="
+de la siguiente forma:
+
+(ngModelChange)="onChange($event)"
+
+para el metodo onChange se lo define en el incrementador.ts
+
+onChange( _event: any){
+    console.log('hey');
+  }
+
+por medio de esta forma se dispara y la consola reacciona con el mensaje
+
+para ver lo q tiene el evento:
+onChange( _event: any){
+    console.log(_event);
+  }
+
+con las configuraciones correctas tenemos:
+  onChange(valor: number){
+    this.valorSalida.emit(valor);
+  }
+
+validando para que no pase de los valores:
+
+  onChange(nuevoValor: number){
+    if( nuevoValor>=100){
+      this.progreso=100;
+    }
+    else if(nuevoValor<=0){
+      this.progreso=0;
+    } else{
+      this.progreso=nuevoValor;
+    }
+    this.valorSalida.emit(this.progreso);
+  }
+
+para poder observar lo q envia la consola se aplica:
+<h4 class="card-title">Striped Progress bar {{progreso1}}</h4>
+
+# validar con boostrap:
+con ng-class:
+
+[ngClass]="{'class': true}"
+
+solo aplicamos la validacion dentro de la caja de texto:
+
+[ngClass]="{'is-invalid': progreso > 100 || progreso < 0}"
+    
+de esta manera la caja marcara de color rojo
+ y quedara de la siguiente manera:
+
+<input type="number" 
+    class="form-control"
+    [ngClass]="{'is-invalid': progreso > 100 || progreso < 0}"
+    placeholder="Progreso"
+    min="0"
+    max="100"
+    (ngModelChange)="onChange($event)"
+    [(ngModel)]="progreso"
+    >
+
