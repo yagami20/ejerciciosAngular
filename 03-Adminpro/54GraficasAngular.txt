@@ -1,0 +1,227 @@
+cuando se va a realizar las importaciones de modulos se debe ver donde se lo va a utilizar
+si es global se importa en app.module
+si es solo en el modelo grafico va en pages/grafica/grafica.component.ts
+pero si se va a colocar en muchos se recomienda usar en app.module
+
+se import y se declara
+
+//modulos
+import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from '../components/components.module';
+import { ChartsModule } from 'ng2-charts';
+
+@NgModule({
+  declarations: [
+    DashboardComponent,
+    ProgressComponent,
+    Grafica1Component,
+    PagesComponent,
+  ],
+  exports: [
+    DashboardComponent,
+    ProgressComponent,
+    Grafica1Component,
+    PagesComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    RouterModule,
+    ComponentsModule,
+    ChartsModule
+  ]
+})
+
+se abrira el html de grafica1: grafica1.component.html
+
+se abrira tamb el pagess.component.html y se copia:
+
+<!-- <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                 This is some text within a card block. 
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+y se pega en grafica component:
+se colocara con una grafica de tamaño 6
+
+<!-- <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                 This is some text within a card block. 
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+se coloca el codigo del demo: dentro del div.cardbody
+
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
+
+se define la data:
+
+se coloca las importaciones dentro de grafica.component.ts
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
+
+se copia las propiedades publicas:
+
+public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100],
+    [50, 150, 120],
+    [250, 130, 70],
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
+
+se coloca de la sig manera:
+
+export class Grafica1Component {
+
+  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100],
+    [50, 150, 120],
+    [250, 130, 70],
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
+
+}
+
+para un arreglo queda de la sig manera:
+
+export class Grafica1Component {
+
+  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100],
+    
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
+
+}
+
+para dejar directamente de una sola propiedad se cambia:
+
+<div style="display: block">
+                        <canvas baseChart
+                          [data]="doughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          chartType="doughnut">
+                        </canvas>
+                      </div>
+y en el ts:
+export class Grafica1Component {
+
+  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100],
+    
+  ];
+
+}
+
+para colocar otra grafica se copia lo siguiente:
+
+<div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block.  -->
+                <!-- <div> -->
+                    <!-- <div> -->
+                      <div style="display: block">
+                        <canvas baseChart
+                          [data]="doughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          chartType="doughnut">
+                        </canvas>
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div> -->
+                <!--  -->
+            </div>
+        </div>
+    </div>
+
+y queda el codigo de la siguiente forma:
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block.  -->
+                <!-- <div> -->
+                    <!-- <div> -->
+                      <div style="display: block">
+                        <canvas baseChart
+                          [data]="doughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          chartType="doughnut">
+                        </canvas>
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div> -->
+                <!--  -->
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- This is some text within a card block.  -->
+                <!-- <div> -->
+                    <!-- <div> -->
+                      <div style="display: block">
+                        <canvas baseChart
+                          [data]="doughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          chartType="doughnut">
+                        </canvas>
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div> -->
+                <!--  -->
+            </div>
+        </div>
+    </div>
+    <!--  -->
+</div>
+
+para cambiar los colores revisar la documentacion:
+https://valor-software.com/ng2-charts/#/GeneralInfo
+
+se selecciona el canvas y se escribe lo siguiente:
+
+<canvas baseChart
+                          [data]="doughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          [colors]="colors"
+                          chartType="doughnut">
+                        </canvas>
+ y se define la propiedad colors:
+
+se realiza la debida importacion y se agrega la proiedad colors en export:
+
+este arreglo se realiza para definir cada una de las propiedades:
+
+  public colors: Color[] = [
+    { backgroundColor: [ '#9E120', '#FF5800', '#FFB414']}
+  ];
+POR CADA ARREGLO SE COLOCA {}
